@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://di3akrsmx4at3"]
+
+[ext_resource type="Script" uid="uid://ccywdka0lmym" path="res://Player/Player.gd" id="1_xhfnw"]
+[ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://Player/Player.gdshader" id="2_kpjcp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rwas"]
+radius = 38.63936
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpjcp"]
+shader = ExtResource("2_kpjcp")
+shader_parameter/radius = 0.5
+shader_parameter/softness = 0.001
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_xhfnw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0rwas")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kpjcp")
+offset_left = -39.0
+offset_top = -39.0
+offset_right = 39.0
+offset_bottom = 39.0

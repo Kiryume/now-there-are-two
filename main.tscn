@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn1sduxcwk4b3"]
+
+[ext_resource type="Script" uid="uid://dlbokws333ddg" path="res://MainScene.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://di3akrsmx4at3" path="res://Player/Player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://w2su3uda5cm" path="res://Enemies/Enemy.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_h2yge")
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(122, 94)
+speed = 150.0
+player_select = 1
+acceleration = 0.5
+
+[node name="Player2" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(244, 188)
+speed = 150.0
+player_select = 2
+acceleration = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("targets")]
+script = ExtResource("2_0xm2m")
+targets = [NodePath("../Player"), NodePath("../Player2")]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("5_lquwl")
+enemyscene = ExtResource("2_1bvp3")
+
+[connection signal="timeout" from="EnemySpawnTimer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]
