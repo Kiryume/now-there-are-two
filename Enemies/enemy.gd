@@ -44,5 +44,5 @@ func move_to_nearest_player(delta: float):
 		velocity = direction.normalized() * speed
 	else:
 		velocity = Vector2.ZERO
-
 	move_and_slide()
+	

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DamageResource" load_steps=2 format=3 uid="uid://2jm4528lwkdg"]
+
+[ext_resource type="Script" uid="uid://bxetcqdxv0crx" path="res://AttackUtils/DamageResource.gd" id="1_tjfpt"]
+
+[resource]
+script = ExtResource("1_tjfpt")
+metadata/_custom_type_script = "uid://bxetcqdxv0crx"

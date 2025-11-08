@@ -3,9 +3,4 @@
 [ext_resource type="Script" uid="uid://tggc1rhveool" path="res://Enemies/enemy.gd" id="1_4isyn"]
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 8
-collision_mask = 9
-motion_mode = 1
-platform_on_leave = 2
-platform_floor_layers = 4294967040
 script = ExtResource("1_4isyn")

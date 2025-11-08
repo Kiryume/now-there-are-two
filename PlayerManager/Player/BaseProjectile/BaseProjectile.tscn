@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpri4v6m1iycv"]
+[gd_scene load_steps=6 format=3 uid="uid://dpri4v6m1iycv"]
 
-[ext_resource type="Script" uid="uid://704p03fguim" path="res://PlayerManager/Upgrades/BaseProjectile/base_projectile.gd" id="1_2cbm4"]
+[ext_resource type="Script" uid="uid://704p03fguim" path="res://PlayerManager/Player/BaseProjectile/base_projectile.gd" id="1_2cbm4"]
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="1_gifoo"]
+[ext_resource type="Resource" uid="uid://2jm4528lwkdg" path="res://PlayerManager/Player/BaseProjectile/ProjectileDamage.tres" id="2_bmxbi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bywb"]
 radius = 4.0
@@ -11,10 +12,14 @@ shader = ExtResource("1_gifoo")
 shader_parameter/radius = 0.5
 shader_parameter/softness = 0.001
 
-[node name="BaseProjectile" type="Area2D"]
+[node name="Hitbox" type="Area2D"]
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("1_2cbm4")
+damage_profile = ExtResource("2_bmxbi")
+metadata/_custom_type_script = "uid://bbaiayb88c6uc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7bywb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -23,5 +28,3 @@ offset_left = -4.0
 offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 4.0
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
