@@ -10,6 +10,7 @@ shader_parameter/force = 0.024
 shader_parameter/center = Vector2(0.5, 0.5)
 shader_parameter/size = 0.0
 shader_parameter/thickness = 0.1
+shader_parameter/color = Color(0.9647059, 0.08627451, 0.5568628, 1)
 
 [node name="OnCollide" type="Node2D"]
 script = ExtResource("1_2vxu4")
