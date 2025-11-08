@@ -8,6 +8,7 @@ uniform float scale:hint_range(0.5, 1000.0);
 
 uniform vec4 left_color: source_color = vec4(0.03, 0.002235, 0.017294, 1.);
 uniform vec4 right_color: source_color = vec4(0.0, 0.022471, 0.03, 1.);
+uniform vec3 star_color: source_color = vec3(.3,.3,.3);
 
 uniform float left_stop = .2;
 uniform float right_stop = .8;
@@ -88,6 +89,6 @@ void fragment() {
 	pink_color = clamp(pink_color, 0., 1.);
 	float blue_color = (UV.x - 0.8) * 5.;
 	blue_color = clamp(blue_color, 0., 1.);
-    vec4 star_color = vec4(star);
-	COLOR = max(max(left_color * pink_color, right_color * blue_color), star_color);
+    vec4 star_bg_color = vec4(star_color * star, star);
+	COLOR = max(max(left_color * pink_color, right_color * blue_color), star_bg_color);
 }

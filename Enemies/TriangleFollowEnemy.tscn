@@ -17,7 +17,7 @@ radius = 49.162994
 [node name="TriangleFollowEnemy" type="CharacterBody2D"]
 rotation = 1.5707964
 collision_layer = 8
-collision_mask = 8
+collision_mask = 9
 script = ExtResource("1_2jdvk")
 
 [node name="StopCheck" type="CollisionShape2D" parent="."]
@@ -33,7 +33,7 @@ offset_bottom = 43.000004
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 9
 script = ExtResource("3_ipfib")
 metadata/_custom_type_script = "uid://dqvkd1m44wah7"
 
