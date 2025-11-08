@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://di3akrsmx4at3"]
+[gd_scene load_steps=10 format=3 uid="uid://di3akrsmx4at3"]
 
 [ext_resource type="Script" uid="uid://ccywdka0lmym" path="res://PlayerManager/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="2_kpjcp"]
-[ext_resource type="PackedScene" uid="uid://dpri4v6m1iycv" path="res://PlayerManager/Upgrades/BaseProjectileUpgrade/BaseProjectile.tscn" id="2_tok1r"]
-[ext_resource type="Script" uid="uid://dsuofxhn2pgmh" path="res://PlayerManager/Player/bullets.gd" id="4_ddoul"]
-[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Enemy.gdshader" id="5_8g4oa"]
+[ext_resource type="PackedScene" uid="uid://d3n2dort2m4og" path="res://PlayerManager/Player/Nozzle.tscn" id="3_euva8"]
+[ext_resource type="Script" uid="uid://417jbgcjydji" path="res://PlayerManager/Player/weapon_controller.gd" id="3_ucskw"]
+[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="4_euva8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rwas"]
 radius = 38.63936
@@ -14,15 +14,19 @@ shader = ExtResource("2_kpjcp")
 shader_parameter/radius = 0.5
 shader_parameter/softness = 0.001
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ysni"]
-shader = ExtResource("5_8g4oa")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ucskw"]
+shader = ExtResource("4_euva8")
 shader_parameter/n = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucskw"]
+radius = 66.61
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_xhfnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_0rwas")
 
 [node name="Texture" type="ColorRect" parent="."]
@@ -32,15 +36,30 @@ offset_top = -39.0
 offset_right = 39.0
 offset_bottom = 39.0
 
-[node name="Bullets2" type="Marker2D" parent="."]
-position = Vector2(48, 0)
-script = ExtResource("4_ddoul")
-bullet_scene = ExtResource("2_tok1r")
+[node name="WeaponController" type="Node2D" parent="."]
+script = ExtResource("3_ucskw")
 
-[node name="MuzzleTexture" type="ColorRect" parent="Bullets2"]
-material = SubResource("ShaderMaterial_6ysni")
+[node name="ShootTimer" type="Timer" parent="WeaponController"]
+autostart = true
+
+[node name="MainNozzle" parent="WeaponController" instance=ExtResource("3_euva8")]
+position = Vector2(42, 0)
+
+[node name="MuzzleTexture" type="ColorRect" parent="WeaponController/MainNozzle"]
+material = SubResource("ShaderMaterial_ucskw")
 offset_left = 3.0
 offset_top = -10.0
 offset_right = 22.93898
 offset_bottom = -3.409603
 rotation = 1.5707964
+metadata/_edit_use_anchors_ = true
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_ucskw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="WeaponController/ShootTimer" to="WeaponController" method="_on_shoot_timer_timeout"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

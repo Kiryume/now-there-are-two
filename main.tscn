@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=16 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://w2su3uda5cm" path="res://Enemies/Enemy.tscn" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
+[ext_resource type="PackedScene" uid="uid://b3uxkitmmli6k" path="res://Enemies/TriangleFollowEnemy.tscn" id="4_272bh"]
 [ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bovwsulx5xm38" path="res://PlayerManager/PlayerManager.tscn" id="6_7mycd"]
 [ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="7_272bh"]
@@ -21,8 +21,10 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="Environment" id="Environment_7mycd"]
 background_mode = 3
+tonemap_mode = 2
 glow_enabled = true
 glow_blend_mode = 0
+adjustment_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
 shader = ExtResource("8_5vw27")
@@ -30,6 +32,16 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = 28.8550013468625
 shader_parameter/star_threshold = 0.935
 shader_parameter/star_brightness = 1.0
+
+[sub_resource type="Gradient" id="Gradient_272bh"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(1, 0.07450981, 0.5764706, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7490196, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5vw27"]
+gradient = SubResource("Gradient_272bh")
+width = 512
+use_hdr = true
 
 [node name="Main" type="Node2D"]
 
@@ -76,13 +88,16 @@ script = ExtResource("2_272bh")
 position = Vector2(5, -4.5)
 shape = SubResource("WorldBoundaryShape2D_272bh")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true
+
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("5_lquwl")
-enemyscene = ExtResource("2_1bvp3")
+enemyscene = ExtResource("4_272bh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7mycd")
@@ -110,6 +125,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PlayerGradient" type="TextureRect" parent="Background"]
+modulate = Color(0.93333334, 0.93333334, 0.93333334, 0.02745098)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_5vw27")
+
 [node name="PlayerManager" parent="." instance=ExtResource("6_7mycd")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]

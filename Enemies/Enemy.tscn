@@ -1,24 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://w2su3uda5cm"]
+[gd_scene load_steps=2 format=3 uid="uid://w2su3uda5cm"]
 
 [ext_resource type="Script" uid="uid://tggc1rhveool" path="res://Enemies/enemy.gd" id="1_4isyn"]
-[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Enemy.gdshader" id="1_bkvnc"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bkvnc"]
-radius = 48.010414
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdetw"]
-shader = ExtResource("1_bkvnc")
-shader_parameter/n = 3
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 9
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_4isyn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bkvnc")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_wdetw")
-offset_left = -44.0
-offset_top = -38.0
-offset_right = 45.0
-offset_bottom = 51.0

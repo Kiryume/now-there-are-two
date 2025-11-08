@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy87qqdjbr2gb"]
+
+[ext_resource type="Script" uid="uid://bol7ft76giu15" path="res://Enemies/drop.gd" id="1_go61h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_go61h"]
+
+[node name="Drop" type="Area2D"]
+script = ExtResource("1_go61h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_go61h")
+
+[node name="Rect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(5, 5)
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+pivot_offset = Vector2(2.5, 2.5)
+color = Color(0.03529412, 1, 1, 1)

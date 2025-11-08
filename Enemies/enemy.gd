@@ -1,11 +1,10 @@
 class_name Enemy
 extends CharacterBody2D
 
-const SPEED = 90.0
-const ROTATION_SPEED = 5.0
-
 var players: Array[Player]
-var health = 10.
+@export var health = 10.
+@export var speed = 90.
+@export var rotation_speed = 5.
 
 func get_player_collision_dmg() -> float:
 	return 5.
@@ -22,26 +21,27 @@ func on_projectile_collision(projectile: BaseProjectile):
 	if projectile.owner is Enemy: return
 	var dmg = projectile.get_base_dmg()
 	take_dmg(dmg)
-	
+
+func get_closest_player() -> Player:
+	var player1: Player = players[0]
+	var player2: Player = players[1]
+
+	if player1.position.distance_squared_to(position) < player2.position.distance_squared_to(position):
+		return player1
+	else:
+		return player2
 
 func _ready():
 	players = PlayerList.players
 	$ColorRect.color = Color.YELLOW*1.15
 
-func _physics_process(delta: float) -> void:
-	var player1: Player = players[0]
-	var player2: Player = players[1]
-	var closest_player: Player
-
-	if player1.position.distance_squared_to(position) < player2.position.distance_squared_to(position):
-		closest_player = player1
-	else:
-		closest_player = player2
+func move_to_nearest_player(delta: float):
+	var closest_player := get_closest_player()
 	var direction = closest_player.position - position
 	if direction.length_squared() > 0.1:
 		var target_angle = direction.angle() - 0.5
-		rotation = lerp_angle(rotation, target_angle, delta * ROTATION_SPEED)
-		velocity = direction.normalized() * SPEED
+		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
+		velocity = direction.normalized() * speed
 	else:
 		velocity = Vector2.ZERO
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cah1yeg7d8kfg"]
+
+[ext_resource type="Script" uid="uid://kxihjim4wkpo" path="res://PlayerManager/Upgrades/UpgradeDB.gd" id="1_7yd15"]
+[ext_resource type="Script" uid="uid://mcbk21oybpo4" path="res://PlayerManager/Upgrades/Upgrade.gd" id="2_7axn6"]
+[ext_resource type="Resource" uid="uid://b2k1mw0gfng1s" path="res://PlayerManager/Upgrades/Corona/CoronaUpgrade.tres" id="3_5sh73"]
+
+[node name="UpgradeDB" type="Node2D"]
+script = ExtResource("1_7yd15")
+all_upgrades = Array[ExtResource("2_7axn6")]([ExtResource("3_5sh73")])

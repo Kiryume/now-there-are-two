@@ -1,10 +1,10 @@
 extends Node2D
-
+class_name PlayerManager
 
 @onready
-var player1: Player = $UpgradeManager/Player
+var player1: Player = $Player
 @onready
-var player2: Player = $UpgradeManager/Player2
+var player2: Player = $Player2
 
 func _ready():
 	PlayerList.set_players([player1, player2])

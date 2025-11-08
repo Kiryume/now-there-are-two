@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwhtqtnkpih30"]
+
+[ext_resource type="Script" uid="uid://da6phtu6o3y1d" path="res://PlayerManager/Upgrades/Corona/corona.gd" id="1_g03ow"]
+
+[node name="Corona" type="Node2D"]
+script = ExtResource("1_g03ow")

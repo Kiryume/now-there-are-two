@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3n2dort2m4og"]
+
+[ext_resource type="Script" uid="uid://dsuofxhn2pgmh" path="res://PlayerManager/Player/nozzle.gd" id="1_m6co7"]
+[ext_resource type="PackedScene" uid="uid://dpri4v6m1iycv" path="res://PlayerManager/Upgrades/BaseProjectile/BaseProjectile.tscn" id="2_06ms2"]
+
+[node name="Nozzle" type="Marker2D"]
+script = ExtResource("1_m6co7")
+bullet_scene = ExtResource("2_06ms2")

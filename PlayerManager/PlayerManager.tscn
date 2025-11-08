@@ -8,11 +8,17 @@ script = ExtResource("1_npw2l")
 
 [node name="UpgradeManager" type="Node2D" parent="."]
 
-[node name="Player" parent="UpgradeManager" instance=ExtResource("2_051cp")]
+[node name="Player" parent="." instance=ExtResource("2_051cp")]
 position = Vector2(-246, 2)
 collision_mask = 5
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 
-[node name="Player2" parent="UpgradeManager" instance=ExtResource("2_051cp")]
+[node name="Player2" parent="." instance=ExtResource("2_051cp")]
 position = Vector2(200, 0)
 collision_mask = 5
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 player_select = "right"

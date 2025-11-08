@@ -1,8 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-@export
-var speed := 500.
+const speed := 250.
 
 @export
 var player_select := "left"
@@ -14,7 +13,7 @@ var color_lerp_speed := 5.0
 var text : ColorRect = $Texture
 
 @onready
-var muzzle_text : ColorRect = $Bullets2/MuzzleTexture
+var muzzle_text : ColorRect = $WeaponController/MainNozzle/MuzzleTexture
 
 var target_color: Color
 
@@ -25,6 +24,7 @@ func take_collision_dmg(enemy: Enemy):
 	
 func on_projectile_collision(projectile: BaseProjectile):
 	pass
+
 
 func _process(delta: float) -> void:
 	if player_select == "left":
@@ -40,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 	var p1x := Input.get_axis(prefix + "_move_left", prefix + "_move_right")
 	var p1y := Input.get_axis(prefix + "_move_up", prefix + "_move_down")
 	
-	var input_direction = Vector2(p1x, p1y).normalized()
+	var input_direction = Vector2(p1x, p1y).min(Vector2(p1x, p1y).normalized())
 	
 	velocity = input_direction * speed
 	if input_direction != Vector2.ZERO:
@@ -56,3 +56,9 @@ func _physics_process(_delta: float) -> void:
 		var collider = collision.get_collider() 
 		if collider is Enemy:
 			take_collision_dmg(collider)
+
+
+func _on_pickup_area_area_entered(area: Area2D) -> void:
+	if area is Drop:
+		#total_xp += area.xp_value
+		pass
