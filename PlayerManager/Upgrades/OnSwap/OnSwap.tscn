@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bctj5hha6b41g"]
+
+[ext_resource type="Script" uid="uid://bxg872h786r6h" path="res://PlayerManager/Upgrades/OnSwap/on_swap.gd" id="1_lcrkd"]
+
+[node name="OnSwap" type="Node2D"]
+script = ExtResource("1_lcrkd")
+upgrade_name = "Lightspeed Swap"
+description = "Swapping at the speed of light produces damaging laser"
+metadata/_custom_type_script = "uid://mcbk21oybpo4"

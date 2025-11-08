@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("swap_sides"):   
-		PlayerList.players_swapped.emit()
+		PlayerList.players_swapped.emit(player1.global_position, player2.global_position)
 		var temp = player1.player_select
 		player1.player_select = player2.player_select
 		player2.player_select = temp

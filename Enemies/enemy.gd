@@ -6,22 +6,14 @@ var players: Array[Player]
 @export var speed = 90.
 @export var rotation_speed = 5.
 
-func get_player_collision_dmg() -> float:
-	return 5.
-	
 func take_dmg(dmg: float):
 	health -= dmg
 	if health <= 0:
 		die()
-		
+
 func die():
 	queue_free()
 	
-func on_projectile_collision(projectile: BaseProjectile):
-	if projectile.owner is Enemy: return
-	var dmg = projectile.get_base_dmg()
-	take_dmg(dmg)
-
 func get_closest_player() -> Player:
 	var player1: Player = players[0]
 	var player2: Player = players[1]

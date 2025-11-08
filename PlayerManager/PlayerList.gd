@@ -12,5 +12,5 @@ func get_center() -> Vector2:
 	p /= players.size()
 	return p
 
-signal players_swapped
+signal players_swapped(pos1: Vector2, pos2: Vector2)
 signal players_collided

@@ -10,6 +10,12 @@ var shooter: Node2D
 
 const PROJECTILE_SPEED = 900.
 
+func _ready():
+	area_entered.connect(_on_area_entered)
+
+func _on_area_entered(area: Area2D):
+	queue_free()
+	
 func set_direction(new_direction: Vector2):
 	if new_direction == Vector2.ZERO:
 		direction = Vector2.UP
