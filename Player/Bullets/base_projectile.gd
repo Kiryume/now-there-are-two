@@ -1,0 +1,19 @@
+class_name BaseProjectile
+extends Area2D
+
+var direction: Vector2 = Vector2.UP
+var lifetile_seconds = 5.0
+
+const PROJECTILE_SPEED = 900.
+
+func set_direction(new_direction: Vector2):
+	if new_direction == Vector2.ZERO:
+		direction = Vector2.UP
+	else:
+		direction = new_direction.normalized()
+
+func _process(delta: float) -> void:
+	position += transform.x * PROJECTILE_SPEED * delta
+	lifetile_seconds -= delta
+	if lifetile_seconds <= 0:
+		queue_free()

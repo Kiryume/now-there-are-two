@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://di3akrsmx4at3"]
+[gd_scene load_steps=9 format=3 uid="uid://di3akrsmx4at3"]
 
 [ext_resource type="Script" uid="uid://ccywdka0lmym" path="res://Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://Player/Player.gdshader" id="2_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://dpri4v6m1iycv" path="res://Player/Bullets/BaseProjectile.tscn" id="2_tok1r"]
+[ext_resource type="Script" uid="uid://dsuofxhn2pgmh" path="res://Player/bullets.gd" id="4_ddoul"]
+[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Enemy.gdshader" id="5_8g4oa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rwas"]
 radius = 38.63936
@@ -11,16 +14,38 @@ shader = ExtResource("2_kpjcp")
 shader_parameter/radius = 0.5
 shader_parameter/softness = 0.001
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ysni"]
+shader = ExtResource("5_8g4oa")
+shader_parameter/n = 3
+
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_xhfnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0rwas")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Texture" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_kpjcp")
 offset_left = -39.0
 offset_top = -39.0
 offset_right = 39.0
 offset_bottom = 39.0
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Bullets2" type="Marker2D" parent="."]
+position = Vector2(48, 0)
+script = ExtResource("4_ddoul")
+bullet_scene = ExtResource("2_tok1r")
+
+[node name="MuzzleTexture" type="ColorRect" parent="Bullets2"]
+material = SubResource("ShaderMaterial_6ysni")
+offset_left = 3.0
+offset_top = -10.0
+offset_right = 22.93898
+offset_bottom = -3.409603
+rotation = 1.5707964
+
+[connection signal="timeout" from="ShootTimer" to="Bullets2" method="_on_shoot_timer_timeout"]

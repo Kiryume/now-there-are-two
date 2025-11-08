@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpri4v6m1iycv"]
+
+[ext_resource type="Script" uid="uid://704p03fguim" path="res://Player/Bullets/base_projectile.gd" id="1_2cbm4"]
+[ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://Player/Player.gdshader" id="1_gifoo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bywb"]
+radius = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cbm4"]
+shader = ExtResource("1_gifoo")
+shader_parameter/radius = 0.5
+shader_parameter/softness = 0.001
+
+[node name="BaseProjectile" type="Area2D"]
+script = ExtResource("1_2cbm4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7bywb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2cbm4")
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
