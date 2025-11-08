@@ -6,6 +6,9 @@ var player1: Player = $Player
 @onready
 var player2: Player = $Player2
 
+@onready
+var upgrades = $Upgrades
+
 func _ready():
 	PlayerList.set_players([player1, player2])
 

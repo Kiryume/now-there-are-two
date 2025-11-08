@@ -1,6 +1,6 @@
 extends Node
 
-@export var all_upgrades: Array[Upgrade]
+var all_upgrades: Array[Upgrade]
 
 var total_xp := 0.
 var last_level := 1

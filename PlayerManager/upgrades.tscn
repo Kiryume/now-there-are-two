@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d8kylbi5t3lg"]
+
+[ext_resource type="Script" uid="uid://hhs6x3xir728" path="res://PlayerManager/upgrades.gd" id="1_tmoht"]
+[ext_resource type="Script" uid="uid://da6phtu6o3y1d" path="res://PlayerManager/Upgrades/Corona/corona.gd" id="1_yolc1"]
+[ext_resource type="PackedScene" uid="uid://cf0urpnbb0das" path="res://PlayerManager/Upgrades/OnCollide/OnCollide.tscn" id="2_tmoht"]
+
+[node name="Upgrades" type="Node2D"]
+script = ExtResource("1_tmoht")
+
+[node name="Corona" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_yolc1")
+upgrade_name = "Corona"
+description = "Shoots bullets around you"
+
+[node name="ShockWave" parent="." instance=ExtResource("2_tmoht")]
+visible = false
+upgrade_name = "Shock Wave"
+description = "Sends a shock wave when you collide with yourself"

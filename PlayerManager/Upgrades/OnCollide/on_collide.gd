@@ -1,12 +1,12 @@
-extends Node2D
+extends Upgrade
 
 # We don't seem to use the player variable, but it's fine to keep
-@onready var player: Player = get_parent().owner
+@onready var player: Player = get_parent().get_parent().owner
 
 # Get a reference to the ColorRect node
 @onready var color_rect: ColorRect = $ColorRect
 
-func _ready() -> void:
+func enable() -> void:
 	print("Attaching and setting up shockwave")
 	var canvas = CanvasLayer.new()
 	add_child(canvas)

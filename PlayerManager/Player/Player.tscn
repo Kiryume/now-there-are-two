@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://di3akrsmx4at3"]
+[gd_scene load_steps=11 format=3 uid="uid://di3akrsmx4at3"]
 
 [ext_resource type="Script" uid="uid://ccywdka0lmym" path="res://PlayerManager/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="2_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://d3n2dort2m4og" path="res://PlayerManager/Player/Nozzle.tscn" id="3_euva8"]
 [ext_resource type="Script" uid="uid://417jbgcjydji" path="res://PlayerManager/Player/weapon_controller.gd" id="3_ucskw"]
 [ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="4_euva8"]
+[ext_resource type="PackedScene" uid="uid://d8kylbi5t3lg" path="res://PlayerManager/upgrades.tscn" id="6_xlo3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rwas"]
 radius = 46.0
@@ -38,6 +39,8 @@ offset_bottom = 39.0
 
 [node name="WeaponController" type="Node2D" parent="."]
 script = ExtResource("3_ucskw")
+
+[node name="Upgrades" parent="WeaponController" instance=ExtResource("6_xlo3v")]
 
 [node name="ShootTimer" type="Timer" parent="WeaponController"]
 autostart = true

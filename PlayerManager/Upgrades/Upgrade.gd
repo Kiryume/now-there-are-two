@@ -1,5 +1,5 @@
 # Upgrade.gd
-extends Resource
+extends Node2D
 class_name Upgrade
 
 # --- Basic Info ---
@@ -7,13 +7,11 @@ class_name Upgrade
 @export_multiline var description: String = "Does cool stuff."
 @export var icon: Texture
 
-
 @export var stat_modifiers: Dictionary = {
 	"fire_rate": 1.0,
 	"damage": 1.0,
 	"move_speed": 1.0
 }
 
-# --- Part 2: Behavior "Plug-in" ---
-# For "4 nozzles" or "laser on collide"
-@export var behavior_scene: PackedScene
+func enable():
+	pass
