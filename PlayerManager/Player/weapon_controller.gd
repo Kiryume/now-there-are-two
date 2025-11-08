@@ -16,7 +16,7 @@ var shoot_timer: Timer = $ShootTimer
 func _ready() -> void:
 	update_stats()
 	on_stats_changed.connect(update_stats) # Re-connect for future upgrades
-	apply_upgrade(UpgradeDB.all_upgrades[0])
+	UpgradeDB.upgrade_selected.connect(apply_upgrade)
 
 func apply_upgrade(upgrade: Upgrade):
 	# Step 1: Apply all stat modifiers

@@ -6,8 +6,6 @@
 [node name="PlayerManager" type="Node2D"]
 script = ExtResource("1_npw2l")
 
-[node name="UpgradeManager" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("2_051cp")]
 position = Vector2(-246, 2)
 collision_mask = 5

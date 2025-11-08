@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciwdix7x6mw4e"]
+[gd_scene load_steps=4 format=3 uid="uid://ciwdix7x6mw4e"]
 
 [ext_resource type="PackedScene" uid="uid://wi0a5f4ph5fh" path="res://PlayerManager/UpgradeSelection/UpgradeOption.tscn" id="1_giohm"]
+[ext_resource type="Script" uid="uid://d3yjkrrp305yt" path="res://PlayerManager/UpgradeSelection/upgrade_selection.gd" id="1_hlbxf"]
+[ext_resource type="Resource" uid="uid://b2k1mw0gfng1s" path="res://PlayerManager/Upgrades/Corona/CoronaUpgrade.tres" id="2_1bgh6"]
 
 [node name="UpgradeSelection" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hlbxf")
+option_class = ExtResource("1_giohm")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -27,10 +32,4 @@ vertical = true
 
 [node name="UpgradeOption" parent="BoxContainer" instance=ExtResource("1_giohm")]
 layout_mode = 2
-title = "Title"
-description = "Description"
-
-[node name="UpgradeOption2" parent="BoxContainer" instance=ExtResource("1_giohm")]
-layout_mode = 2
-title = "Title"
-description = "Description"
+upgrade = ExtResource("2_1bgh6")

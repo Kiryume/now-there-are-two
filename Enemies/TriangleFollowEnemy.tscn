@@ -1,20 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3uxkitmmli6k"]
 
-[ext_resource type="Script" path="res://Enemies/triangle_follow_enemy.gd" id="1_2jdvk"]
+[ext_resource type="Script" uid="uid://n4atrp5p2hmx" path="res://Enemies/triangle_follow_enemy.gd" id="1_2jdvk"]
 [ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="2_ipfib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k0ubx"]
-radius = 48.010414
+radius = 25.179358
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4dhks"]
 shader = ExtResource("2_ipfib")
 shader_parameter/n = 3
 
 [node name="TriangleFollowEnemy" type="CharacterBody2D"]
+motion_mode = 1
+floor_snap_length = 0.0
 script = ExtResource("1_2jdvk")
 metadata/_custom_type_script = "uid://tggc1rhveool"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="StopCheck" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_k0ubx")
 
 [node name="ColorRect" type="ColorRect" parent="."]

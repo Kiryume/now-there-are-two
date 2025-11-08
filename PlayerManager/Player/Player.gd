@@ -60,5 +60,10 @@ func _physics_process(_delta: float) -> void:
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area is Drop:
-		#total_xp += area.xp_value
+		UpgradeDB.gain_xp(area.xp_value)
+		area.queue_free()
 		pass
+
+
+func _on_other_collide_check_area_entered(area: Area2D) -> void:
+	PlayerList.players_collided.emit()

@@ -1,19 +1,27 @@
 @tool
 extends Control
 
-@onready var Title = $MarginContainer/BoxContainer/Title
-@onready var Description = $MarginContainer/BoxContainer/Description
+@onready var Title = $MarginContainer/HBoxContainer/BoxContainer/Title
+@onready var Description = $MarginContainer/HBoxContainer/BoxContainer/Description
+@onready var Icon = $MarginContainer/HBoxContainer/Icon
 
-@export
-var title: String:
-	get:
-		return Title.text
+@export var upgrade: Upgrade:
 	set(val):
-		Title.text = val
+		upgrade = val
+		update()
 
-@export
-var description: String:
-	get:
-		return Description.text
-	set(val):
-		Description.text = val
+func update():
+	if not is_node_ready(): return
+	if not upgrade: return
+	Title.text = upgrade.upgrade_name
+	Description.text = upgrade.description
+	Icon.texture = upgrade.icon
+
+func _ready():
+	update()
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			print("clicked")
+			UpgradeDB.upgrade_selected.emit(upgrade)

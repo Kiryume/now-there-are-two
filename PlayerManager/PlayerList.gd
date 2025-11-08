@@ -11,3 +11,6 @@ func get_center() -> Vector2:
 		p += target.position
 	p /= players.size()
 	return p
+
+signal players_swapped
+signal players_collided

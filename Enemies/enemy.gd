@@ -38,7 +38,7 @@ func _ready():
 func move_to_nearest_player(delta: float):
 	var closest_player := get_closest_player()
 	var direction = closest_player.position - position
-	if direction.length_squared() > 0.1:
+	if direction.length() > 80.:
 		var target_angle = direction.angle() - 0.5
 		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
 		velocity = direction.normalized() * speed

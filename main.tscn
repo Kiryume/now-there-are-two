@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=15 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
 [ext_resource type="PackedScene" uid="uid://b3uxkitmmli6k" path="res://Enemies/TriangleFollowEnemy.tscn" id="4_272bh"]
 [ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ciwdix7x6mw4e" path="res://PlayerManager/UpgradeSelection/UpgradeSelection.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bovwsulx5xm38" path="res://PlayerManager/PlayerManager.tscn" id="6_7mycd"]
 [ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="7_272bh"]
 [ext_resource type="Shader" uid="uid://bdu6s1qs2og4x" path="res://background.gdshader" id="8_5vw27"]
@@ -30,18 +31,12 @@ adjustment_enabled = true
 shader = ExtResource("8_5vw27")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = 28.8550013468625
+shader_parameter/left_color = Color(1, 0.07450981, 0.5764706, 0.02745098)
+shader_parameter/right_color = Color(0, 0.7490196, 1, 0.02745098)
+shader_parameter/left_stop = 0.2
+shader_parameter/right_stop = 0.8
 shader_parameter/star_threshold = 0.935
 shader_parameter/star_brightness = 1.0
-
-[sub_resource type="Gradient" id="Gradient_272bh"]
-interpolation_color_space = 2
-offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
-colors = PackedColorArray(1, 0.07450981, 0.5764706, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7490196, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5vw27"]
-gradient = SubResource("Gradient_272bh")
-width = 512
-use_hdr = true
 
 [node name="Main" type="Node2D"]
 
@@ -103,6 +98,7 @@ enemyscene = ExtResource("4_272bh")
 environment = SubResource("Environment_7mycd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -112,6 +108,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_272bh")
+
+[node name="UpgradeSelection" parent="CanvasLayer/Control" instance=ExtResource("6_5vw27")]
+visible = false
+layout_mode = 1
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -124,15 +124,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PlayerGradient" type="TextureRect" parent="Background"]
-modulate = Color(0.93333334, 0.93333334, 0.93333334, 0.02745098)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_5vw27")
 
 [node name="PlayerManager" parent="." instance=ExtResource("6_7mycd")]
 

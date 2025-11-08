@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://bjl6djawhk1es"]
+
+[ext_resource type="Script" uid="uid://mcbk21oybpo4" path="res://PlayerManager/Upgrades/Upgrade.gd" id="1_2jmrk"]
+[ext_resource type="PackedScene" uid="uid://cf0urpnbb0das" path="res://PlayerManager/Upgrades/OnCollide/OnCollide.tscn" id="1_a7ejm"]
+
+[resource]
+script = ExtResource("1_2jmrk")
+upgrade_name = "Shock Wave"
+description = "Sends a shock wave when you collide with yourself"
+behavior_scene = ExtResource("1_a7ejm")
+metadata/_custom_type_script = "uid://mcbk21oybpo4"

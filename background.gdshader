@@ -3,6 +3,15 @@ shader_type canvas_item;
 uniform vec2 offset;
 uniform float scale:hint_range(0.5, 1000.0);
 
+//uniform vec4 left_color: source_color = vec4(1.0, 0.07450980392156863, 0.5764705882352941, .03);
+//uniform vec4 right_color: source_color = vec4(0., 0.7490196078431373, 1., .03);
+
+uniform vec4 left_color: source_color = vec4(0.03, 0.002235, 0.017294, 1.);
+uniform vec4 right_color: source_color = vec4(0.0, 0.022471, 0.03, 1.);
+
+uniform float left_stop = .2;
+uniform float right_stop = .8;
+
 // Description : Array and textureless GLSL 2D simplex noise function.
 //      Author : Ian McEwan, Ashima Arts.
 //  Maintainer : stegu
@@ -75,5 +84,10 @@ float snoise(vec2 v) {
 void fragment() {
     float n = snoise((UV + offset) * scale) * 0.5 + 0.5;
 	float star = step(star_threshold, n) * star_brightness;
-    COLOR = vec4(vec3(star), 1.0);
+	float pink_color = 1. - UV.x * 5.;
+	pink_color = clamp(pink_color, 0., 1.);
+	float blue_color = (UV.x - 0.8) * 5.;
+	blue_color = clamp(blue_color, 0., 1.);
+    vec4 star_color = vec4(star);
+	COLOR = max(max(left_color * pink_color, right_color * blue_color), star_color);
 }
