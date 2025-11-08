@@ -12,6 +12,7 @@ shader_parameter/radius = 0.5
 shader_parameter/softness = 0.001
 
 [node name="BaseProjectile" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_2cbm4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,3 +24,5 @@ offset_left = -4.0
 offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

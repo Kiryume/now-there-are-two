@@ -18,11 +18,12 @@ var muzzle_text : ColorRect = $Bullets2/MuzzleTexture
 
 var target_color: Color
 
-
-
 const MAX_COLLISION_COUNT = 10
 
 func take_collision_dmg(enemy: Enemy):
+	pass
+	
+func on_projectile_collision(projectile: BaseProjectile):
 	pass
 
 func _process(delta: float) -> void:
@@ -49,3 +50,9 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider() 
+		if collider is Enemy:
+			take_collision_dmg(collider)

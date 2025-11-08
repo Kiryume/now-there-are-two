@@ -5,6 +5,7 @@ var bullet_scene: PackedScene
 
 func _on_shoot_timer_timeout() -> void:
 	var child: BaseProjectile = bullet_scene.instantiate() as BaseProjectile
+	child.shooter = owner
 	owner.owner.add_child(child)
 	child.transform = global_transform
 	child.text.color = (owner as Player).target_color * 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=13 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dlbokws333ddg" path="res://MainScene.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://di3akrsmx4at3" path="res://Player/Player.tscn" id="1_ig7tw"]
@@ -6,18 +6,32 @@
 [ext_resource type="PackedScene" uid="uid://w2su3uda5cm" path="res://Enemies/Enemy.tscn" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://buw4bcy01nfq1" path="res://player_manager.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
+[ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="7_272bh"]
+[ext_resource type="Shader" uid="uid://bdu6s1qs2og4x" path="res://background.gdshader" id="8_5vw27"]
 
 [sub_resource type="Environment" id="Environment_7mycd"]
 background_mode = 3
 glow_enabled = true
 glow_blend_mode = 0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5vw27"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vw27"]
+noise = SubResource("FastNoiseLite_5vw27")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
+shader = ExtResource("8_5vw27")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5vw27")
+shader_parameter/noise_scale = 100.0
+shader_parameter/star_threshold = 0.8
+shader_parameter/star_brightness = 1.0
+
+[node name="Main" type="Node2D"]
 script = ExtResource("1_h2yge")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("targets")]
+[node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_0xm2m")
-targets = [NodePath("../PlayerManager/Player"), NodePath("../PlayerManager/Player2")]
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -39,5 +53,27 @@ player_select = "right"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7mycd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_272bh")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+material = SubResource("ShaderMaterial_kek77")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="EnemySpawnTimer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]

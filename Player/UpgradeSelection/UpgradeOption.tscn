@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://wi0a5f4ph5fh"]
+
+[ext_resource type="Script" uid="uid://bkwtdlgqk3wlt" path="res://Player/UpgradeSelection/upgrade_option.gd" id="2_0q2wn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcxol"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ym4x"]
+font_size = 20
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 121.0
+offset_bottom = 95.0
+script = ExtResource("2_0q2wn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Title" type="Label" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_gcxol")
+
+[node name="Description" type="Label" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "Description"
+label_settings = SubResource("LabelSettings_8ym4x")
