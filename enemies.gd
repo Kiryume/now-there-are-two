@@ -1,7 +1,7 @@
 extends Node2D
 
 @export
-var spawn_offset = 500.;
+var spawn_offset = 1000.;
 
 @export
 var max_enemies = 20;
