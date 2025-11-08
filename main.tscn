@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=16 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
@@ -37,6 +37,20 @@ shader_parameter/left_stop = 0.2
 shader_parameter/right_stop = 0.8
 shader_parameter/star_threshold = 0.935
 shader_parameter/star_brightness = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vw27"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 10.0
+scale_max = 30.0
+color = Color(1, 1, 0.047058824, 1)
 
 [node name="Main" type="Node2D"]
 
@@ -128,5 +142,17 @@ grow_vertical = 2
 [node name="PlayerManager" parent="." instance=ExtResource("6_7mycd")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="EnemyDeathAnim" type="GPUParticles2D" parent="."]
+visible = false
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+visibility_rect = Rect2(-130.20348, -133.57706, 267.03894, 272.09253)
+trail_enabled = true
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_5vw27")
 
 [connection signal="timeout" from="EnemySpawnTimer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]

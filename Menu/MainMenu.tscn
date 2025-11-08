@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://g52edfythfoj"]
+
+[ext_resource type="Shader" uid="uid://bdu6s1qs2og4x" path="res://background.gdshader" id="1_swd6r"]
+[ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="2_tma8a"]
+[ext_resource type="Script" uid="uid://cdf4aiob85aei" path="res://Menu/BGScroll.gd" id="2_tpenk"]
+[ext_resource type="Script" uid="uid://cx6uvli3vqttw" path="res://Menu/start_btn.gd" id="4_tpenk"]
+[ext_resource type="PackedScene" uid="uid://cn1sduxcwk4b3" path="res://main.tscn" id="5_exbqw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swd6r"]
+shader = ExtResource("1_swd6r")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/scale = 28.8550013468625
+shader_parameter/left_color = Color(1, 0.07450981, 0.5764706, 0.02745098)
+shader_parameter/right_color = Color(0, 0.7490196, 1, 0.02745098)
+shader_parameter/left_stop = 0.2
+shader_parameter/right_stop = 0.8
+shader_parameter/star_threshold = 0.935
+shader_parameter/star_brightness = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_exbqw"]
+font_size = 60
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_biqin"]
+font_size = 30
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BackgroundShader" type="ColorRect" parent="Background"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_swd6r")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_tpenk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tma8a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -42.5
+offset_right = 67.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Space survivors 2"
+label_settings = SubResource("LabelSettings_exbqw")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Electric Boogaloo"
+label_settings = SubResource("LabelSettings_biqin")
+horizontal_alignment = 1
+
+[node name="StartBtn" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("4_tpenk")
+main_scene = ExtResource("5_exbqw")
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/StartBtn" to="CanvasLayer/Control/VBoxContainer/StartBtn" method="_on_pressed"]
