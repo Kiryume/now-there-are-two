@@ -17,11 +17,6 @@ float polygon(vec2 uv, float width, int sides)
 }
 
 void fragment() {
-    // Example usage: draw a hexagon (6 sides) with thin stroke
     float poly = polygon(UV, 0.95, n);
 	COLOR = vec4(COLOR.rgb, 1.0-poly);
-
-    // You can modify the parameters:
-    // - Change the last parameter (6) to any integer for different polygons
-    // - Adjust the second parameter (0.95) to control thickness (closer to 1.0 = thinner)
 }

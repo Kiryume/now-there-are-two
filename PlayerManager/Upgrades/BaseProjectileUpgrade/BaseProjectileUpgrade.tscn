@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://4nwtapslifap"]
+
+[ext_resource type="Script" uid="uid://deke8fpdxddy0" path="res://PlayerManager/Upgrades/BaseProjectileUpgrade/base_projectile_upgrade.gd" id="1_73220"]
+
+[node name="BaseProjectileUpgrade" type="Node2D"]
+script = ExtResource("1_73220")
+metadata/_custom_type_script = "uid://d2o1obcwg6844"

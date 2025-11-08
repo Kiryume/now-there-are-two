@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bovwsulx5xm38"]
+
+[ext_resource type="Script" uid="uid://buw4bcy01nfq1" path="res://player_manager.gd" id="1_npw2l"]
+[ext_resource type="PackedScene" uid="uid://di3akrsmx4at3" path="res://PlayerManager/Player/Player.tscn" id="2_051cp"]
+
+[node name="PlayerManager" type="Node2D"]
+script = ExtResource("1_npw2l")
+
+[node name="UpgradeManager" type="Node2D" parent="."]
+
+[node name="Player" parent="UpgradeManager" instance=ExtResource("2_051cp")]
+position = Vector2(-246, 2)
+collision_mask = 5
+
+[node name="Player2" parent="UpgradeManager" instance=ExtResource("2_051cp")]
+position = Vector2(200, 0)
+collision_mask = 5
+player_select = "right"

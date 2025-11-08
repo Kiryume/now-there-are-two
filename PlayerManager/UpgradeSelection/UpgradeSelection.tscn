@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ciwdix7x6mw4e"]
 
-[ext_resource type="PackedScene" uid="uid://wi0a5f4ph5fh" path="res://Player/UpgradeSelection/UpgradeOption.tscn" id="1_giohm"]
+[ext_resource type="PackedScene" uid="uid://wi0a5f4ph5fh" path="res://PlayerManager/UpgradeSelection/UpgradeOption.tscn" id="1_giohm"]
 
 [node name="UpgradeSelection" type="Control"]
 layout_mode = 3

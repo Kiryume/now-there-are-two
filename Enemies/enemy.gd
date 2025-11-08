@@ -2,7 +2,6 @@ class_name Enemy
 extends CharacterBody2D
 
 const SPEED = 90.0
-# Adjust this value to make rotation faster or slower
 const ROTATION_SPEED = 5.0
 
 var players: Array[Player]

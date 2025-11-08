@@ -1,31 +1,33 @@
 extends Camera2D
 
-@export var move_speed := 30 # camera position lerp speed
-#@export var zoom_speed := 3.0  # camera zoom lerp speed
-#@export var min_zoom := 1.0  # camera won't zoom closer than this
-#@export var max_zoom := 1.0  # camera won't zoom farther than this
-#@export var margin := Vector2(40, 20)  # include some buffer area around targets
+@export var move_speed := 30
 
-#@onready var screen_size = get_viewport_rect().size
+@onready var bgoffset: ColorRect = $"../Background/BackgroundShader"
 
+func get_camera_visible_rect() -> Rect2:
+	var viewport := get_viewport()
+	if not viewport:
+		return Rect2()
+
+	var viewport_size := viewport.get_visible_rect().size
+	var camera_position := position
+	var camera_zoom := zoom
+
+	var world_width := viewport_size.x / camera_zoom.x
+	var world_height := viewport_size.y / camera_zoom.y
+
+	var half_size := Vector2(world_width, world_height) / 2.0
+	var top_left := camera_position - half_size
+
+	return Rect2(top_left, Vector2(world_width, world_height))
+	
 func _physics_process(delta):
-	var targets := PlayerList.players
+	var targets: Array[Player] = PlayerList.players
 	if not targets: return
 	var p := Vector2.ZERO
 	for target in targets:
 		p += target.position
 	p /= targets.size()
 	position = lerp(position, p, move_speed * delta)
-
-	#var r = Rect2(position, Vector2.ONE)
-	#for target in targets:
-		#r = r.expand(target.position)
-	#r = r.grow_individual(margin.x, margin.y, margin.x, margin.y)
-
-	#var z
-	#if r.size.x > r.size.y * screen_size.aspect():
-		#z = 1 / clamp(r.size.x / screen_size.x, max_zoom, min_zoom)
-	#else:
-		#z = 1 / clamp(r.size.y / screen_size.y, max_zoom, min_zoom)
-#
-	#zoom = lerp(zoom, Vector2.ONE * z, zoom_speed * delta)
+	var rect := get_camera_visible_rect()
+	bgoffset.material.set("shader_parameter/offset", Vector2(position.x / rect.size.x, position.y / rect.size.y))

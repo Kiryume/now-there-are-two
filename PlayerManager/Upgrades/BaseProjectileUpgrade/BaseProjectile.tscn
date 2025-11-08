@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpri4v6m1iycv"]
 
-[ext_resource type="Script" uid="uid://704p03fguim" path="res://Player/Bullets/base_projectile.gd" id="1_2cbm4"]
-[ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://Player/Player.gdshader" id="1_gifoo"]
+[ext_resource type="Script" uid="uid://704p03fguim" path="res://PlayerManager/Upgrades/BaseProjectileUpgrade/base_projectile.gd" id="1_2cbm4"]
+[ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="1_gifoo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bywb"]
 radius = 4.0

@@ -19,7 +19,7 @@ func set_direction(new_direction: Vector2):
 	else:
 		direction = new_direction.normalized()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	position += transform.x * PROJECTILE_SPEED * delta
 	lifetile_seconds -= delta
 	if lifetile_seconds <= 0:
