@@ -15,3 +15,9 @@ class_name Upgrade
 
 func enable():
 	pass
+
+func upgrade():
+	pass
+	
+func can_be_chosen() -> bool:
+	return true

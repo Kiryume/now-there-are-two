@@ -12,5 +12,8 @@ func _on_upgrade_selected(upgrade: Upgrade):
 	for child in get_children():
 		if child.name == upgrade.name:
 			if child is Upgrade:
-				child.show()
-				child.enable()
+				if not child.visible:
+					child.show()
+					child.enable()
+				else:
+					child.upgrade()

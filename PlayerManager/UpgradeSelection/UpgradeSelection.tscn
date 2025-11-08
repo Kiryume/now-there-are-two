@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciwdix7x6mw4e"]
+[gd_scene load_steps=4 format=3 uid="uid://ciwdix7x6mw4e"]
 
 [ext_resource type="PackedScene" uid="uid://wi0a5f4ph5fh" path="res://PlayerManager/UpgradeSelection/UpgradeOption.tscn" id="1_giohm"]
 [ext_resource type="Script" uid="uid://d3yjkrrp305yt" path="res://PlayerManager/UpgradeSelection/upgrade_selection.gd" id="1_hlbxf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bgh6"]
+font_size = 30
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -14,17 +17,28 @@ grow_vertical = 2
 script = ExtResource("1_hlbxf")
 option_class = ExtResource("1_giohm")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -69.5
+offset_top = -23.0
+offset_right = 69.5
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_1bgh6")
+horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
 vertical = true

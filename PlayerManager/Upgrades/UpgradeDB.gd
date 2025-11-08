@@ -17,7 +17,7 @@ func gain_xp(xp: float):
 
 # This function will be called by your UI
 func get_three_random_upgrades() -> Array[Upgrade]:
-	var shuffled_upgrades = all_upgrades.duplicate()
+	var shuffled_upgrades = all_upgrades.filter(func (upgrade): return upgrade.can_be_chosen())
 	shuffled_upgrades.shuffle()
 	return shuffled_upgrades.slice(0, min(3, all_upgrades.size()))
 
