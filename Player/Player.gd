@@ -7,6 +7,8 @@ var speed := 500.
 @export
 var player_select := "left"
 
+@export
+var color_lerp_speed := 5.0
 
 @onready
 var text : ColorRect = $Texture
@@ -16,19 +18,21 @@ var muzzle_text : ColorRect = $Bullets2/MuzzleTexture
 
 var target_color: Color
 
-func _ready():
-	if player_select == "left":
-		target_color = Color.DEEP_PINK
-	else:
-		target_color = Color.DEEP_SKY_BLUE
 
-	text.color = target_color
-	muzzle_text.color = target_color
 
 const MAX_COLLISION_COUNT = 10
 
 func take_collision_dmg(enemy: Enemy):
 	pass
+
+func _process(delta: float) -> void:
+	if player_select == "left":
+		target_color = Color.DEEP_PINK * 1.15
+	else:
+		target_color = Color.DEEP_SKY_BLUE * 1.15
+	text.color = text.color.lerp(target_color, delta * color_lerp_speed)
+	muzzle_text.color = muzzle_text.color.lerp(target_color, delta * color_lerp_speed)
+
 
 func _physics_process(_delta: float) -> void:
 	var prefix = player_select

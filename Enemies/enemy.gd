@@ -9,6 +9,7 @@ var players: Array[Player]
 
 func _ready():
 	players = PlayerList.players
+	$ColorRect.color = Color.YELLOW*1.15
 
 func _physics_process(delta: float) -> void:
 	var player1: Player = players[0]

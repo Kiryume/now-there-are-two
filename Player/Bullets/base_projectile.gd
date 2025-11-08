@@ -1,8 +1,12 @@
 class_name BaseProjectile
 extends Area2D
 
+@onready
+var text : ColorRect = $ColorRect
+
 var direction: Vector2 = Vector2.UP
 var lifetile_seconds = 5.0
+
 
 const PROJECTILE_SPEED = 900.
 
