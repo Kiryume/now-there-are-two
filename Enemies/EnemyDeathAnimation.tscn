@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://do0r6gx7q2slk"]
 
-[ext_resource type="Script" uid="uid://bxe357u8ymb87" path="res://Enemies/yellow_enemy_death_anim.gd" id="1_hts7e"]
+[ext_resource type="Script" uid="uid://bxe357u8ymb87" path="res://Enemies/EnemyDeathAnimation.gd" id="1_hts7e"]
 [ext_resource type="AudioStream" uid="uid://dtfsk0ghpkayg" path="res://audio/explosion.wav" id="2_8l03n"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vw27"]

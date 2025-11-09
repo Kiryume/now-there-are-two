@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="2_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://d3n2dort2m4og" path="res://PlayerManager/Player/Nozzle.tscn" id="3_euva8"]
 [ext_resource type="Script" uid="uid://417jbgcjydji" path="res://PlayerManager/Player/weapon_controller.gd" id="3_ucskw"]
-[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="4_euva8"]
+[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/NGon.gdshader" id="4_euva8"]
 [ext_resource type="PackedScene" uid="uid://d8kylbi5t3lg" path="res://PlayerManager/upgrades.tscn" id="6_xlo3v"]
 [ext_resource type="AudioStream" uid="uid://cdd18dk6cr7tu" path="res://audio/pickupCoin.wav" id="7_mm8lp"]
 [ext_resource type="AudioStream" uid="uid://dqja3y267o4ky" path="res://audio/shoot.wav" id="8_nghrh"]
@@ -92,6 +92,10 @@ metadata/_custom_type_script = "uid://dqvkd1m44wah7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_v28lc")
 
+[node name="HealTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="WeaponController/ShootTimer" to="WeaponController" method="_on_shoot_timer_timeout"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="body_entered" from="OtherPlayerCheck" to="." method="_on_other_collide_check_body_entered"]
+[connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]

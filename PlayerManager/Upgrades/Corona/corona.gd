@@ -23,3 +23,6 @@ func enable() -> void:
 	nozzle3.position = Vector2(0, -42)
 	nozzle3.rotation_degrees = 270
 	parent.add_child.call_deferred(nozzle3)
+
+func can_be_chosen():
+	return not visible

@@ -6,7 +6,7 @@ const max_level = 5
 @export var xp_value = 1.
 @onready var hurtbox: Hurtbox = $Hurtbox
 var droptscn = preload("res://Enemies/Drop.tscn")
-var deathparticle = preload("res://Enemies/yellow_enemy_death_anim.tscn")
+var deathparticle = preload("res://Enemies/EnemyDeathAnimation.tscn")
 
 func get_xp_value():
 	return level

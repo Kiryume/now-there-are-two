@@ -9,6 +9,13 @@ extends Upgrade
 @export var laser_duration: float = .2
 @export var timeout_duration: float = 3.
 
+func can_be_chosen() -> bool:
+	return laser_duration < 1.
+
+func upgrade():
+	laser_duration *= 1.1
+	timeout_duration *= 0.9
+
 func enable() -> void:
 	print("Enabled")
 

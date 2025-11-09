@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
-[ext_resource type="PackedScene" uid="uid://b3uxkitmmli6k" path="res://Enemies/TriangleFollowEnemy.tscn" id="4_272bh"]
+[ext_resource type="PackedScene" uid="uid://b3uxkitmmli6k" path="res://Enemies/Triangle/EnemyFollower.tscn" id="4_272bh"]
 [ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ciwdix7x6mw4e" path="res://PlayerManager/UpgradeSelection/UpgradeSelection.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bovwsulx5xm38" path="res://PlayerManager/PlayerManager.tscn" id="6_7mycd"]

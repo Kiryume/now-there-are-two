@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b3uxkitmmli6k"]
 
-[ext_resource type="Script" uid="uid://n4atrp5p2hmx" path="res://Enemies/triangle_follow_enemy.gd" id="1_2jdvk"]
-[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="2_ipfib"]
+[ext_resource type="Script" uid="uid://n4atrp5p2hmx" path="res://Enemies/Triangle/EnemyFollower.gd" id="1_2jdvk"]
+[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/NGon.gdshader" id="2_ipfib"]
 [ext_resource type="Script" uid="uid://dqvkd1m44wah7" path="res://AttackUtils/hurtbox.gd" id="3_ipfib"]
 [ext_resource type="Script" uid="uid://bbaiayb88c6uc" path="res://AttackUtils/hitbox.gd" id="4_k0ubx"]
 [ext_resource type="Resource" uid="uid://cvw2dlrgvg5ac" path="res://Enemies/ContactDamage.tres" id="5_4dhks"]

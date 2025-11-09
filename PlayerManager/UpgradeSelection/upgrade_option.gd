@@ -19,8 +19,15 @@ func update():
 
 func _ready():
 	update()
+	
+func _draw():
+	if has_focus():
+		var style_box = get_theme_stylebox("focus")
+		style_box.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
+			UpgradeDB.upgrade_selected.emit(upgrade)
+	if event.is_action_pressed("ui_accept"):
 			UpgradeDB.upgrade_selected.emit(upgrade)

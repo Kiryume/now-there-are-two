@@ -30,14 +30,30 @@ func update_color():
 	target_color.s *= health / MAX_HEALTH
 
 func _ready() -> void:
-	update_color()
 	$Hurtbox.hurt.connect(_on_hurt)
 	
 func _on_hurt(damage_profile: DamageResource):
 	health -= damage_profile.amount
-	update_color() 
+	if health <= 0:
+		die()
+
+func die():
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
+	$Hurtbox.lingering_hitboxes = {}
+	PlayerList.player_died.emit(player_select)
+
+func revive(pos: Vector2):
+	visible = true
+	position = pos
+	process_mode = Node.PROCESS_MODE_INHERIT
+	health = MAX_HEALTH
+	update_color()
+	$Hurtbox.lingering_hitboxes = {}
+
 
 func _process(delta: float) -> void:
+	update_color()
 	text.color = text.color.lerp(target_color, delta * color_lerp_speed)
 	muzzle_text.color = muzzle_text.color.lerp(target_color, delta * color_lerp_speed)
 
@@ -69,3 +85,9 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 
 func _on_other_collide_check_body_entered(body: Node2D) -> void:
 	PlayerList.players_collided.emit()
+
+
+func _on_heal_timer_timeout() -> void:
+	if health < MAX_HEALTH:
+		health += 1
+		update_color()

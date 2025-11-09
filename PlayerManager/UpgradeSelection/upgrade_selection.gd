@@ -18,10 +18,14 @@ func update():
 	if not is_node_ready(): return
 	for child in container.get_children():
 		container.remove_child(child)
+	var first = true
 	for i in range(options.size()):
 		var child = option_class.instantiate()
 		child.upgrade = options[i]
 		container.add_child(child)
+		if first:
+			first = false
+			child.grab_focus.call_deferred()
 	
 func _ready():
 	UpgradeDB.show_upgrade_selection.connect(show_upgrades)

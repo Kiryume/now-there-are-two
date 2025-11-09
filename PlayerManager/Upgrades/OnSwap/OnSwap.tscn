@@ -16,6 +16,8 @@ description = "Swapping at the speed of light produces damaging laser. You have 
 metadata/_custom_type_script = "uid://mcbk21oybpo4"
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("2_vryq5")
 damage_profile = ExtResource("3_w3i6c")
 metadata/_custom_type_script = "uid://bbaiayb88c6uc"
