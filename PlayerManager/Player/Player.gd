@@ -53,12 +53,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
-	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider() 
-		if collider is Enemy:
-			take_collision_dmg(collider)
+
 
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
