@@ -21,3 +21,6 @@ func upgrade():
 	
 func can_be_chosen() -> bool:
 	return true
+
+static func get_instance():
+	return null

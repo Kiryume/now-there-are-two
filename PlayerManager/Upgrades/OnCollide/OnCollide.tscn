@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bbaiayb88c6uc" path="res://AttackUtils/hitbox.gd" id="3_8womh"]
 [ext_resource type="Resource" uid="uid://u87gcmfaie62" path="res://PlayerManager/Upgrades/OnCollide/ShockVaweDamage.tres" id="4_pvnnw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvnnw"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8womh"]
 shader = ExtResource("2_abxy6")
 shader_parameter/progress = 0.0
@@ -14,22 +16,12 @@ shader_parameter/size = 0.0
 shader_parameter/thickness = 0.1
 shader_parameter/color = Color(0.9764706, 0.09411765, 0.5647059, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pvnnw"]
-
 [node name="OnCollide" type="Node2D"]
 script = ExtResource("1_2vxu4")
-upgrade_name = null
-description = null
-stat_modifiers = null
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_8womh")
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("3_8womh")
@@ -38,3 +30,13 @@ metadata/_custom_type_script = "uid://bbaiayb88c6uc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_pvnnw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_8womh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

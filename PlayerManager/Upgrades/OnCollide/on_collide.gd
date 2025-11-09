@@ -4,15 +4,10 @@ extends Upgrade
 @onready var player: Player = get_parent().get_parent().owner
 
 # Get a reference to the ColorRect node
-@onready var color_rect: ColorRect = $ColorRect
+@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 @onready var hitbox_shape = $Hitbox/CollisionShape2D
 
 func enable() -> void:
-	var canvas = CanvasLayer.new()
-	add_child(canvas)
-	color_rect.get_parent().remove_child(color_rect)
-	canvas.add_child(color_rect)
-	color_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	PlayerList.players_collided.connect(shock_wave)
 
 func shock_wave():

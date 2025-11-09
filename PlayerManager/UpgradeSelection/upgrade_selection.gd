@@ -5,14 +5,12 @@ var options: Array[Upgrade] = []
 @export var option_class: PackedScene
 
 func show_upgrades():
-	print("showing upgradees")
 	visible = true
 	options = UpgradeDB.get_three_random_upgrades()
 	get_tree().paused = true
 	update()
 	
 func _on_upgrade_selected(_upgrade: Upgrade):
-	print("upgrade selected")
 	get_tree().paused = false
 	hide()
 	

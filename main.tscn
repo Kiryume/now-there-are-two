@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=17 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ciwdix7x6mw4e" path="res://PlayerManager/UpgradeSelection/UpgradeSelection.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bovwsulx5xm38" path="res://PlayerManager/PlayerManager.tscn" id="6_7mycd"]
 [ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="7_272bh"]
+[ext_resource type="Shader" uid="uid://rty6hvo1jqc4" path="res://World/crt.gdshader" id="7_kek77"]
 [ext_resource type="Shader" uid="uid://bdu6s1qs2og4x" path="res://background.gdshader" id="8_5vw27"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
@@ -33,24 +34,21 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = 28.8550013468625
 shader_parameter/left_color = Color(1, 0.07450981, 0.5764706, 0.02745098)
 shader_parameter/right_color = Color(0, 0.7490196, 1, 0.02745098)
+shader_parameter/star_color = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/left_stop = 0.2
 shader_parameter/right_stop = 0.8
 shader_parameter/star_threshold = 0.935
 shader_parameter/star_brightness = 1.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vw27"]
-particle_flag_disable_z = true
-angle_min = 1.0728835e-05
-angle_max = 360.00003
-spread = 180.0
-initial_velocity_min = 150.0
-initial_velocity_max = 300.0
-gravity = Vector3(0, 0, 0)
-damping_min = 10.0
-damping_max = 20.0
-scale_min = 10.0
-scale_max = 30.0
-color = Color(1, 1, 0.047058824, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("7_kek77")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.10000000475
+shader_parameter/warp_amount = -0.09999995725
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
 
 [node name="Main" type="Node2D"]
 
@@ -111,22 +109,6 @@ enemyscene = ExtResource("4_272bh")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7mycd")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_272bh")
-
-[node name="UpgradeSelection" parent="CanvasLayer/Control" instance=ExtResource("6_5vw27")]
-visible = false
-layout_mode = 1
-
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -139,20 +121,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_272bh")
+
+[node name="UpgradeSelection" parent="UILayer/Control" instance=ExtResource("6_5vw27")]
+visible = false
+layout_mode = 1
+
+[node name="CRTLayer" type="CanvasLayer" parent="."]
+
+[node name="CRT" type="ColorRect" parent="CRTLayer"]
+material = SubResource("ShaderMaterial_4c57u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="PlayerManager" parent="." instance=ExtResource("6_7mycd")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="EnemyDeathAnim" type="GPUParticles2D" parent="."]
-visible = false
-emitting = false
-amount = 30
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.8
-visibility_rect = Rect2(-130.20348, -133.57706, 267.03894, 272.09253)
-trail_enabled = true
-trail_lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_5vw27")
 
 [connection signal="timeout" from="EnemySpawnTimer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]

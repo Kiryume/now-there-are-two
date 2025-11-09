@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d8kylbi5t3lg"]
+[gd_scene load_steps=6 format=3 uid="uid://d8kylbi5t3lg"]
 
 [ext_resource type="Script" uid="uid://hhs6x3xir728" path="res://PlayerManager/upgrades.gd" id="1_tmoht"]
 [ext_resource type="Script" uid="uid://da6phtu6o3y1d" path="res://PlayerManager/Upgrades/Corona/corona.gd" id="1_yolc1"]
 [ext_resource type="PackedScene" uid="uid://cf0urpnbb0das" path="res://PlayerManager/Upgrades/OnCollide/OnCollide.tscn" id="2_tmoht"]
+[ext_resource type="PackedScene" uid="uid://bctj5hha6b41g" path="res://PlayerManager/Upgrades/OnSwap/OnSwap.tscn" id="4_a0raq"]
+[ext_resource type="Script" uid="uid://51anp0rou6re" path="res://PlayerManager/Upgrades/DirectDeposit/direct_deposit.gd" id="5_x7yws"]
 
 [node name="Upgrades" type="Node2D"]
 script = ExtResource("1_tmoht")
@@ -17,3 +19,13 @@ description = "Shoots bullets around you"
 visible = false
 upgrade_name = "Shock Wave"
 description = "Sends a shock wave when you collide with yourself"
+
+[node name="LightSwap" parent="." instance=ExtResource("4_a0raq")]
+visible = false
+
+[node name="DirectDeposit" type="Node2D" parent="."]
+visible = false
+script = ExtResource("5_x7yws")
+upgrade_name = "Direct deposit"
+description = "Increases the chance of XPs being deposited on kill by 5%"
+metadata/_custom_type_script = "uid://mcbk21oybpo4"

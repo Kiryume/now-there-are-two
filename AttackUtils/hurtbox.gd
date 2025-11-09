@@ -10,6 +10,4 @@ func _on_area_entered(area: Area2D):
 	if area is Hitbox:
 		var profile = area.damage_profile
 		if profile:
-			print("amount")
-			print(profile.amount)
 			hurt.emit(profile)

@@ -2,13 +2,24 @@ class_name Enemy
 extends CharacterBody2D
 
 var players: Array[Player]
-@export var health = 10.
+@export var max_health = 10.
+@export var health = max_health
 @export var speed = 90.
 @export var rotation_speed = 5.
 
+var color = Color.YELLOW*1.15
+
+@onready var rect: ColorRect = $ColorRect
+
+func update_color():
+	var new_color = color
+	new_color.s *= health / max_health
+	rect.color = new_color
+
 func take_dmg(dmg: float):
 	health -= dmg
-	if health <= 0:
+	update_color()
+	if health <= 0 && not is_queued_for_deletion():
 		die()
 
 func die():
@@ -25,7 +36,7 @@ func get_closest_player() -> Player:
 
 func _ready():
 	players = PlayerList.players
-	$ColorRect.color = Color.YELLOW*1.15
+	update_color()
 
 func move_to_nearest_player(delta: float):
 	var closest_player := get_closest_player()
