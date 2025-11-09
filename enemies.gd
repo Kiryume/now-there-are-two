@@ -37,7 +37,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	add_child(child)
 
 func get_random_level():
-	return clampf(randfn(UpgradeDB.level, .75), 1, 5)
+	return clampf(randfn(UpgradeDB.level, .75), 1, 20)
 
 func get_random_location() -> Vector2:
 	var random = randf() * PI * 2

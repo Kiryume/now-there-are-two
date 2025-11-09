@@ -21,6 +21,7 @@ func get_color():
 
 func _ready():
 	super._ready()
+	level = clamp(level, 1, max_level)
 	hurtbox.hurt.connect(_on_hurt)
 	max_health = get_max_hp_value()
 	health = max_health

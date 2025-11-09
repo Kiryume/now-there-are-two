@@ -9,7 +9,7 @@ func enable() -> void:
 	PlayerList.players_collided.connect(shock_wave)
 
 func upgrade():
-	$Hitbox.damage_multiplier *= 1.3
+	$Hitbox.damage_multiplier *= 1.6
 	level += 1
 
 func can_be_chosen() -> bool:

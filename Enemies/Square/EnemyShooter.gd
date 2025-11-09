@@ -8,12 +8,19 @@ var droptscn = preload("res://Enemies/Drop.tscn")
 var deathparticle = preload("res://Enemies/EnemyDeathAnimation.tscn")
 
 @onready var nozzle = $MainNozzle
+@onready var timer = $ShootTimer
 
 func get_xp_value():
 	return level * 3
 	
 func get_max_hp_value():
 	return level * 10
+	
+func get_bullet_speed():
+	return lerp(0.25, 0.6, level / (max_level as float))
+
+func get_shoot_timer():
+	return lerp(3.0, 1., level/(max_level as float))
 	
 func get_color():
 	var base_color = Color.YELLOW*1.15
@@ -26,11 +33,14 @@ func update_color():
 
 func _ready():
 	super._ready()
+	level = clamp(level, 1, max_level)
 	hurtbox.hurt.connect(_on_hurt)
 	max_health = get_max_hp_value()
 	health = max_health
 	color = get_color()
 	update_color()
+	nozzle.bullet_speed_modifier = get_bullet_speed()
+	timer.wait_time = get_shoot_timer()
 
 func _physics_process(delta: float) -> void:
 	var closest_player := get_closest_player()

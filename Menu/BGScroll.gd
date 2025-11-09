@@ -1,6 +1,6 @@
 extends ColorRect
 
-@export var speed := 1.;
+@export var speed := .1;
 
 @export var offset := 0.;
 

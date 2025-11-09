@@ -10,10 +10,10 @@ extends Upgrade
 @export var timeout_duration: float = 3.
 
 func can_be_chosen() -> bool:
-	return laser_duration < 1.
+	return timeout_duration > 1. 
 
 func upgrade():
-	laser_duration *= 1.1
+	$Hitbox.damage_multiplier *= 1.3
 	timeout_duration *= 0.9
 
 func enable() -> void:
