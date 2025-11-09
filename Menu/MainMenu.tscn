@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="2_tma8a"]
 [ext_resource type="Script" uid="uid://cdf4aiob85aei" path="res://Menu/BGScroll.gd" id="2_tpenk"]
 [ext_resource type="Script" uid="uid://cx6uvli3vqttw" path="res://Menu/start_btn.gd" id="4_tpenk"]
-[ext_resource type="PackedScene" uid="uid://cn1sduxcwk4b3" path="res://main.tscn" id="5_exbqw"]
+[ext_resource type="AudioStream" uid="uid://qthpocsfpqbg" path="res://audio/menuloop.ogg" id="5_exbqw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swd6r"]
 shader = ExtResource("1_swd6r")
@@ -12,6 +12,7 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = 28.8550013468625
 shader_parameter/left_color = Color(1, 0.07450981, 0.5764706, 0.02745098)
 shader_parameter/right_color = Color(0, 0.7490196, 1, 0.02745098)
+shader_parameter/star_color = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/left_stop = 0.2
 shader_parameter/right_stop = 0.8
 shader_parameter/star_threshold = 0.935
@@ -83,6 +84,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Start"
 script = ExtResource("4_tpenk")
-main_scene = ExtResource("5_exbqw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_exbqw")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/StartBtn" to="CanvasLayer/Control/VBoxContainer/StartBtn" method="_on_pressed"]

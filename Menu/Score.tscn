@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3miyfp36gvm"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3miyfp36gvm"]
 
 [ext_resource type="Shader" uid="uid://bdu6s1qs2og4x" path="res://background.gdshader" id="1_u03vl"]
 [ext_resource type="Script" uid="uid://cdf4aiob85aei" path="res://Menu/BGScroll.gd" id="2_ywiyn"]
 [ext_resource type="Theme" uid="uid://btiws37slvnn7" path="res://main_theme.tres" id="3_dgvju"]
 [ext_resource type="Script" uid="uid://cx6uvli3vqttw" path="res://Menu/start_btn.gd" id="4_bgtrr"]
 [ext_resource type="Script" uid="uid://dmjx83q3m4rab" path="res://Menu/scorelabel.gd" id="4_ywiyn"]
+[ext_resource type="AudioStream" uid="uid://coi5qp5vq5qbc" path="res://audio/endloop.ogg" id="6_ywiyn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aib0k"]
 shader = ExtResource("1_u03vl")
@@ -86,5 +87,10 @@ script = ExtResource("4_ywiyn")
 layout_mode = 2
 text = "Reset"
 script = ExtResource("4_bgtrr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ywiyn")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/StartBtn" to="CanvasLayer/Control/VBoxContainer/StartBtn" method="_on_pressed"]
