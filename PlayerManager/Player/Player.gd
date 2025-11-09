@@ -63,5 +63,5 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 		coin_pickup.play()
 
 
-func _on_other_collide_check_area_entered(area: Area2D) -> void:
+func _on_other_collide_check_body_entered(body: Node2D) -> void:
 	PlayerList.players_collided.emit()

@@ -32,7 +32,8 @@ offset_right = 44.0
 offset_bottom = 43.000004
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 128
+collision_mask = 16
 script = ExtResource("3_ipfib")
 metadata/_custom_type_script = "uid://dqvkd1m44wah7"
 

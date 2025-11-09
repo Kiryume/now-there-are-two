@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di3akrsmx4at3"]
+[gd_scene load_steps=15 format=3 uid="uid://di3akrsmx4at3"]
 
 [ext_resource type="Script" uid="uid://ccywdka0lmym" path="res://PlayerManager/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Shader" uid="uid://c34nayxbaxuld" path="res://PlayerManager/Player/Player.gdshader" id="2_kpjcp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d8kylbi5t3lg" path="res://PlayerManager/upgrades.tscn" id="6_xlo3v"]
 [ext_resource type="AudioStream" uid="uid://cdd18dk6cr7tu" path="res://audio/pickupCoin.wav" id="7_mm8lp"]
 [ext_resource type="AudioStream" uid="uid://dqja3y267o4ky" path="res://audio/shoot.wav" id="8_nghrh"]
+[ext_resource type="Script" uid="uid://dqvkd1m44wah7" path="res://AttackUtils/hurtbox.gd" id="9_2ef8v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rwas"]
 radius = 46.0
@@ -24,8 +25,12 @@ shader_parameter/n = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_ucskw"]
 radius = 66.61
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v28lc"]
+radius = 36.124783
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_xhfnw")
 
@@ -60,6 +65,7 @@ rotation = 1.5707964
 metadata/_edit_use_anchors_ = true
 
 [node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_ucskw")
@@ -68,7 +74,7 @@ shape = SubResource("CircleShape2D_ucskw")
 stream = ExtResource("7_mm8lp")
 
 [node name="OtherPlayerCheck" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherPlayerCheck"]
@@ -77,6 +83,13 @@ shape = SubResource("CircleShape2D_0rwas")
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_nghrh")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("9_2ef8v")
+metadata/_custom_type_script = "uid://dqvkd1m44wah7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_v28lc")
+
 [connection signal="timeout" from="WeaponController/ShootTimer" to="WeaponController" method="_on_shoot_timer_timeout"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
-[connection signal="area_entered" from="OtherPlayerCheck" to="." method="_on_other_collide_check_area_entered"]
+[connection signal="body_entered" from="OtherPlayerCheck" to="." method="_on_other_collide_check_body_entered"]
