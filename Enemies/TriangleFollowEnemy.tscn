@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3uxkitmmli6k"]
+[gd_scene load_steps=10 format=3 uid="uid://b3uxkitmmli6k"]
 
 [ext_resource type="Script" uid="uid://n4atrp5p2hmx" path="res://Enemies/triangle_follow_enemy.gd" id="1_2jdvk"]
 [ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/Triangle.gdshader" id="2_ipfib"]
 [ext_resource type="Script" uid="uid://dqvkd1m44wah7" path="res://AttackUtils/hurtbox.gd" id="3_ipfib"]
+[ext_resource type="Script" uid="uid://bbaiayb88c6uc" path="res://AttackUtils/hitbox.gd" id="4_k0ubx"]
+[ext_resource type="Resource" uid="uid://cvw2dlrgvg5ac" path="res://Enemies/ContactDamage.tres" id="5_4dhks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k0ubx"]
 radius = 37.01351
@@ -13,6 +15,9 @@ shader_parameter/n = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jdvk"]
 radius = 49.162994
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dhks"]
+radius = 37.01351
 
 [node name="TriangleFollowEnemy" type="CharacterBody2D"]
 rotation = 1.5707964
@@ -40,3 +45,13 @@ metadata/_custom_type_script = "uid://dqvkd1m44wah7"
 [node name="HurtBox" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_2jdvk")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_k0ubx")
+damage_profile = ExtResource("5_4dhks")
+metadata/_custom_type_script = "uid://bbaiayb88c6uc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_4dhks")

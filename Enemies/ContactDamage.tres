@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DamageResource" load_steps=2 format=3 uid="uid://cvw2dlrgvg5ac"]
+
+[ext_resource type="Script" uid="uid://bxetcqdxv0crx" path="res://AttackUtils/DamageResource.gd" id="1_wprx4"]
+
+[resource]
+script = ExtResource("1_wprx4")
+metadata/_custom_type_script = "uid://bxetcqdxv0crx"
