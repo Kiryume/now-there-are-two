@@ -47,6 +47,9 @@ offset_bottom = 39.0
 [node name="WeaponController" type="Node2D" parent="."]
 script = ExtResource("3_ucskw")
 
+[node name="Shoot" type="AudioStreamPlayer2D" parent="WeaponController"]
+stream = ExtResource("8_nghrh")
+
 [node name="Upgrades" parent="WeaponController" instance=ExtResource("6_xlo3v")]
 
 [node name="ShootTimer" type="Timer" parent="WeaponController"]
@@ -79,9 +82,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherPlayerCheck"]
 shape = SubResource("CircleShape2D_0rwas")
-
-[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_nghrh")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 32

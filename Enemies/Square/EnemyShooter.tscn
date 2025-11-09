@@ -1,0 +1,90 @@
+[gd_scene load_steps=14 format=3 uid="uid://cy71c2n0i11tq"]
+
+[ext_resource type="Script" uid="uid://tq4dankuxlth" path="res://Enemies/Square/EnemyShooter.gd" id="1_adtwv"]
+[ext_resource type="Shader" uid="uid://ch80vchss2qbs" path="res://Enemies/NGon.gdshader" id="2_l0gxj"]
+[ext_resource type="Script" uid="uid://dqvkd1m44wah7" path="res://AttackUtils/hurtbox.gd" id="3_gva2y"]
+[ext_resource type="Script" uid="uid://bbaiayb88c6uc" path="res://AttackUtils/hitbox.gd" id="4_pr3hq"]
+[ext_resource type="Resource" uid="uid://cvw2dlrgvg5ac" path="res://Enemies/ContactDamage.tres" id="5_7owii"]
+[ext_resource type="PackedScene" uid="uid://d3n2dort2m4og" path="res://PlayerManager/Player/Nozzle.tscn" id="6_6dbvs"]
+[ext_resource type="PackedScene" uid="uid://clbjf3ahp4h87" path="res://Enemies/Square/squarehitbox.tscn" id="7_13f16"]
+[ext_resource type="AudioStream" uid="uid://dqja3y267o4ky" path="res://audio/shoot.wav" id="8_13f16"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ubx"]
+radius = 37.01351
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adtwv"]
+shader = ExtResource("2_l0gxj")
+shader_parameter/n = 4
+shader_parameter/rotation_degrees = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jdvk"]
+radius = 49.162994
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dhks"]
+radius = 37.01351
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfxoo"]
+shader = ExtResource("2_l0gxj")
+shader_parameter/n = 3
+shader_parameter/rotation_degrees = 0.0
+
+[node name="SquareEnemeyShooter" type="CharacterBody2D"]
+rotation = 1.5707964
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_adtwv")
+
+[node name="StopCheck" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_k0ubx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_adtwv")
+offset_left = -54.0
+offset_top = -54.0
+offset_right = 35.0
+offset_bottom = 35.0
+scale = Vector2(1.215, 1.215)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 16
+script = ExtResource("3_gva2y")
+metadata/_custom_type_script = "uid://dqvkd1m44wah7"
+
+[node name="HurtBox" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_2jdvk")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_pr3hq")
+damage_profile = ExtResource("5_7owii")
+metadata/_custom_type_script = "uid://bbaiayb88c6uc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_4dhks")
+
+[node name="MainNozzle" parent="." instance=ExtResource("6_6dbvs")]
+position = Vector2(42, 0)
+bullet_scene = ExtResource("7_13f16")
+bullet_speed_modifier = 0.25
+
+[node name="MuzzleTexture" type="ColorRect" parent="MainNozzle"]
+material = SubResource("ShaderMaterial_yfxoo")
+offset_left = 3.0
+offset_top = -10.0
+offset_right = 22.93898
+offset_bottom = -3.409603
+rotation = 1.5707964
+metadata/_edit_use_anchors_ = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_13f16")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

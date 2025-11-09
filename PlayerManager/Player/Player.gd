@@ -39,7 +39,8 @@ func _on_hurt(damage_profile: DamageResource):
 
 func die():
 	visible = false
-	process_mode = Node.PROCESS_MODE_DISABLED
+	process_mode
+	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	$Hurtbox.lingering_hitboxes = {}
 	PlayerList.player_died.emit(player_select)
 

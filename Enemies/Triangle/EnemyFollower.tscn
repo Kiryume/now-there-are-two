@@ -12,6 +12,7 @@ radius = 37.01351
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4dhks"]
 shader = ExtResource("2_ipfib")
 shader_parameter/n = 3
+shader_parameter/rotation_degrees = 90.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jdvk"]
 radius = 49.162994
@@ -20,7 +21,6 @@ radius = 49.162994
 radius = 37.01351
 
 [node name="TriangleFollowEnemy" type="CharacterBody2D"]
-rotation = 1.5707964
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_2jdvk")
@@ -31,10 +31,10 @@ shape = SubResource("CircleShape2D_k0ubx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_4dhks")
-offset_left = -45.0
-offset_top = -45.999996
-offset_right = 44.0
-offset_bottom = 43.000004
+offset_left = -44.000004
+offset_top = -43.999996
+offset_right = 44.999996
+offset_bottom = 45.000004
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 128

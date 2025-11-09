@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cn1sduxcwk4b3"]
+[gd_scene load_steps=18 format=3 uid="uid://cn1sduxcwk4b3"]
 
 [ext_resource type="Script" uid="uid://dywkyivbyklps" path="res://Camera.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b3fekgk56n6ln" path="res://World/animatablebody2dfollowparent.gd" id="2_272bh"]
 [ext_resource type="PackedScene" uid="uid://b3uxkitmmli6k" path="res://Enemies/Triangle/EnemyFollower.tscn" id="4_272bh"]
+[ext_resource type="PackedScene" uid="uid://cy71c2n0i11tq" path="res://Enemies/Square/EnemyShooter.tscn" id="5_4c57u"]
 [ext_resource type="Script" uid="uid://c3d4xvna50ase" path="res://enemies.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ciwdix7x6mw4e" path="res://PlayerManager/UpgradeSelection/UpgradeSelection.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bovwsulx5xm38" path="res://PlayerManager/PlayerManager.tscn" id="6_7mycd"]
@@ -104,7 +105,7 @@ autostart = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("5_lquwl")
-enemyscene = ExtResource("4_272bh")
+enemyscenes = Array[PackedScene]([ExtResource("4_272bh"), ExtResource("5_4c57u")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7mycd")

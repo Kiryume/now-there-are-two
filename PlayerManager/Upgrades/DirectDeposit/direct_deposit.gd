@@ -28,7 +28,7 @@ func upgrade():
 func can_be_chosen() -> bool:
 	return chance < maximum
 
-static func get_instance() -> DirectDeposit:
+static func get_instance():
 	for upg in UpgradeDB.all_upgrades:
 		if upg is DirectDeposit:
 			return upg

@@ -6,6 +6,7 @@ var players: Array[Player]
 @export var health = max_health
 @export var speed = 90.
 @export var rotation_speed = 5.
+@export var target_level = 1.
 
 var color = Color.YELLOW*1.15
 
@@ -46,11 +47,8 @@ func move_to_nearest_player(delta: float):
 	if not closest_player:
 		return
 	var direction = closest_player.position - position
-	if direction.length() > 80.:
-		var target_angle = direction.angle() - 0.5
-		rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
-		velocity = direction.normalized() * speed
-	else:
-		velocity = Vector2.ZERO
+	var target_angle = direction.angle()
+	rotation = lerp_angle(rotation, target_angle, delta * rotation_speed)
+	velocity = direction.normalized() * speed
 	move_and_slide()
 	

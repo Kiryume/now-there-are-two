@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://clbjf3ahp4h87"]
+
+[ext_resource type="PackedScene" uid="uid://dpri4v6m1iycv" path="res://PlayerManager/Player/BaseProjectile/BaseProjectile.tscn" id="1_1qtah"]
+[ext_resource type="Script" uid="uid://bxetcqdxv0crx" path="res://AttackUtils/DamageResource.gd" id="2_lh60g"]
+
+[sub_resource type="Resource" id="Resource_ksx8q"]
+script = ExtResource("2_lh60g")
+amount = 5.0
+metadata/_custom_type_script = "uid://bxetcqdxv0crx"
+
+[node name="Hitbox" instance=ExtResource("1_1qtah")]
+collision_layer = 64
+collision_mask = 40
+damage_profile = SubResource("Resource_ksx8q")

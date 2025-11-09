@@ -1,14 +1,19 @@
 extends Upgrade
 
-# We don't seem to use the player variable, but it's fine to keep
-@onready var player: Player = get_parent().get_parent().owner
-
-# Get a reference to the ColorRect node
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 @onready var hitbox_shape = $Hitbox/CollisionShape2D
 
+var level = 0;
+
 func enable() -> void:
 	PlayerList.players_collided.connect(shock_wave)
+
+func upgrade():
+	$Hitbox.damage_multiplier *= 1.3
+	level += 1
+
+func can_be_chosen() -> bool:
+	return level < 4
 
 func shock_wave():
 	if not $Timer.is_stopped():
