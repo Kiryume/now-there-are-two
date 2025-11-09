@@ -16,8 +16,12 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var loc = get_random_location()
 	var child: Node2D = enemyscene.instantiate()
 	child.position = loc
+	child.level = get_random_level()
 	add_child(child)
-	
+
+func get_random_level():
+	return clampf(randfn(UpgradeDB.get_level(), .75), 1, 5)
+
 func get_random_location() -> Vector2:
 	var random = randf() * PI * 2
 	var center = PlayerList.get_center()

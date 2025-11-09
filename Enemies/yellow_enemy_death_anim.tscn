@@ -15,9 +15,9 @@ damping_min = 10.0
 damping_max = 20.0
 scale_min = 10.0
 scale_max = 20.0
-color = Color(1, 1, 0.047058824, 1)
 
 [node name="EnemyDeathAnim" type="GPUParticles2D"]
+self_modulate = Color(1, 1, 0.047058824, 1)
 emitting = false
 amount = 30
 lifetime = 0.3

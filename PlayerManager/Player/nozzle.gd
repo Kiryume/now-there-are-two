@@ -5,6 +5,8 @@ class_name Nozzle
 var bullet_scene: PackedScene
 @onready
 var parent = get_parent()
+@onready
+var shoot_player = $"../../Shoot"
 
 func _ready():
 	(parent as WeaponController).on_shoot.connect(shoot)
@@ -16,3 +18,4 @@ func shoot() -> void:
 	root.add_child(child)
 	child.transform = global_transform
 	child.text.color = (parent.owner as Player).target_color * 2
+	shoot_player.play()

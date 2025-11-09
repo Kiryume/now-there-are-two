@@ -15,6 +15,9 @@ var text : ColorRect = $Texture
 @onready
 var muzzle_text : ColorRect = $WeaponController/MainNozzle/MuzzleTexture
 
+@onready
+var coin_pickup = $CoinPickup
+
 var target_color: Color
 
 const MAX_COLLISION_COUNT = 10
@@ -62,7 +65,7 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area is Drop:
 		UpgradeDB.gain_xp(area.xp_value)
 		area.queue_free()
-		pass
+		coin_pickup.play()
 
 
 func _on_other_collide_check_area_entered(area: Area2D) -> void:
